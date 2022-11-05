@@ -6,6 +6,11 @@ The main purpose of this program is to reduce the resolution of the PDF, so that
 This program is especially helpful if you want to reduce the file size of a PDF that contains handwritten notes (e.g. produced with apps like GoodNotes)
 
 # Installation
+```bash
+cargo install smallerpdf
+```
 
 # Usage
-smallerpdf
+```bash
+smallerpdf <pdf_name>
+```
