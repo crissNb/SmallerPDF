@@ -1,30 +1,33 @@
-use std::path::Path;
-use std::process::Command;
-use std::{env, process::exit};
+use std::{env, ffi::OsStr, path::PathBuf, process::Command};
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    if args.len() < 2 {
+    let Some(file_path): Option<PathBuf> = env::args().nth(1).map(Into::into) else {
         println!("Provide a file path!");
-        exit(0);
-    }
+        return;
+    };
 
-    // Check if file exists and is pdf
-    let file_path = Path::new(&args[1]);
-    if !file_path.exists() {
-        println!("File does not exist!");
-        exit(0);
+    // Check if file exists and can be read.
+    match file_path.try_exists() {
+        Ok(true) => (),
+        Ok(false) => {
+            println!("File does not exist!");
+            return;
+        }
+        Err(e) => {
+            println!("Can't access file! Error: '{e}'");
+            return;
+        }
     }
 
     // TODO: Ability to optimize an entire folder of documents, recursively
-    if file_path.extension().unwrap() != "pdf" {
+
+    // Check if file is pdf.
+    if file_path.extension() != Some(OsStr::new("pdf")) {
         println!("Provided file is not a PDF document!");
-        exit(0);
+        return;
     }
 
-    let mut gs_command = Command::new("gs");
-    gs_command
+    if let Err(e) = Command::new("gs")
         .arg("-dBATCH")
         .arg("-dNOPAUSE")
         .arg("-q")
@@ -33,9 +36,12 @@ fn main() {
         .arg("-r72")
         .arg("-sDEVICE=pdfwrite")
         .arg("-sOutputFile=output.pdf")
-        .arg(&file_path);
-
-    Command::output(&mut gs_command).expect("Failure");
+        .arg(&file_path)
+        .output()
+    {
+        println!("Unable to run GhostScript! Error: '{e}'");
+        return;
+    }
 
     println!("Result saved in output.pdf!");
 }
