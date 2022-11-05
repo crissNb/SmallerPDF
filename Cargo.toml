@@ -1,7 +1,15 @@
 [package]
-name = "SmallerPDF"
+name = "smallerpdf"
 version = "0.1.0"
 edition = "2021"
+authors = ["crissnb <crissnb472@gmail.com>"]
+license = "MIT"
+description = "A super simple tool to make your pdf file size smaller using ghostscript"
+readme = "README.md"
+homepage = "https://github.com/crissNb/SmallerPDF"
+repository = "https://github.com/crissNb/SmallerPDF"
+keywords = ["cli", "pdf", "optimizer"]
+categories = ["command-line-utilities"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
