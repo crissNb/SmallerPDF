@@ -1,5 +1,5 @@
 # SmallerPDF
-Make your PDF files great again! A super simple PDF resize tool using GhostScript.
+Make your PDF files great again! A super simple tool to reduce PDF file size using GhostScript.
 
 # Intention
 The main purpose of this program is to reduce the resolution of the PDF, so that you can easily share your large size PDF around online (e.g. Discord has file limit size of 8MB).
