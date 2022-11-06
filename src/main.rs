@@ -27,13 +27,28 @@ fn main() {
         return;
     }
 
+    let mut _image_resolution = 72;
+    if env::args().len() > 2 {
+        let _number: i32 = match env::args().nth(2).unwrap().parse() {
+            Ok(n) => {
+                n
+            },
+            Err(_) => {
+                eprintln!("Provide an integer to adjust image resolution!");
+                return;
+            }
+        };
+
+        _image_resolution = _number;
+    }
+
     if let Err(e) = Command::new("gs")
         .arg("-dBATCH")
         .arg("-dNOPAUSE")
         .arg("-q")
         .arg("-dCompatibilityLevel=1.4")
         .arg("-dPDFSETTINGS=/screen")
-        .arg("-r72")
+        .arg(format!("-r{}", _image_resolution))
         .arg("-sDEVICE=pdfwrite")
         .arg("-sOutputFile=output.pdf")
         .arg(&file_path)

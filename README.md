@@ -11,6 +11,8 @@ cargo install smallerpdf
 ```
 
 # Usage
+From my experience, adjusting lowering image resolution size drastically lowers the output size of the PDF. However, this will lower all the images that are included in the PDF file.
+Strangely enough, if you have a PDF that only consists of a handwritten note (e.g. produced with GoodNotes), you may lower the image resolution all the way down to 8 and the quality is still unaffected (but the size is reduced).
 ```bash
-smallerpdf <pdf_name>
+smallerpdf <pdf_name> [image_resolution_size]
 ```
