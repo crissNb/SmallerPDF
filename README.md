@@ -16,3 +16,7 @@ Strangely enough, if you have a PDF that only consists of a handwritten note (e.
 ```bash
 smallerpdf <pdf_name> [image_resolution_size]
 ```
+
+# To Dos
+- Ability to optimize an entire folder of documents, recursively
+- Output file size difference upon completion
