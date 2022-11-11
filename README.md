@@ -17,5 +17,7 @@ Strangely enough, if you have a PDF that only consists of a handwritten note (e.
 smallerpdf <pdf_name> [image_resolution_size]
 ```
 
+where <> parameters are required and [] parameters are optional.
+
 # To Dos
 - Ability to optimize an entire folder of documents, recursively
